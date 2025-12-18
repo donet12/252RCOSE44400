@@ -39,6 +39,26 @@ Thumbs.db
 
 # Backend data
 backend/data/
+assignment2/data/
+
+# AWS
+.aws/
+*.pem
+*.key
+*.p12
+*.pfx
+aws-exports.js
+amplify/
+
+# Lambda
+*.zip
+lambda_function/__pycache__/
+lambda_function/*.pyc
+
+# Assignment specific
+assignment1/
+assignment2/venv/
+assignment3/venv/
 
 # Temporary files
 *.tmp
