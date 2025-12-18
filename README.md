@@ -55,6 +55,10 @@ source venv/bin/activate  # Linux/Mac
 # 또는
 venv\Scripts\activate    # Windows
 
+# 의존성 설치 (필요한 경우)
+pip install -r backend/requirements.txt  # requirements.txt가 있다면
+pip install -r frontend/requirements.txt
+
 # Backend 실행
 cd backend
 python app.py
@@ -65,6 +69,17 @@ python app.py
 ```
 
 브라우저에서 `http://localhost:5000`으로 접속하여 웹 인터페이스를 사용할 수 있습니다.
+
+### API 엔드포인트
+
+- `GET http://localhost:5001/api/message` - 현재 메시지 조회
+- `POST http://localhost:5001/api/message` - 메시지 업데이트
+  ```json
+  {
+    "message": "새로운 메시지"
+  }
+  ```
+- `GET http://localhost:5001/api/health` - 서버 상태 확인
 
 ## Assignment 3: AWS Lambda 리뷰 처리 시스템
 
@@ -89,6 +104,11 @@ docker build -t lambda-function .
 # AWS ECR에 푸시하거나 Lambda에 직접 배포
 ```
 
+Lambda 함수에 다음 환경 변수를 설정해야 합니다:
+- `TABLE_NAME`: DynamoDB 테이블 이름
+- `SENDER_EMAIL`: SES에서 인증된 발신자 이메일
+- `RECEIVER_EMAIL`: 알림을 받을 수신자 이메일
+
 #### 리뷰 생성기 실행
 
 ```bash
@@ -97,6 +117,9 @@ cd assignment3
 source venv/bin/activate  # Linux/Mac
 # 또는
 venv\Scripts\activate     # Windows
+
+# 의존성 설치 (필요한 경우)
+pip install -r requirements.txt
 
 # 환경 변수 설정
 export API_URL="your-lambda-api-url"
@@ -107,7 +130,13 @@ python request_generator.py
 
 ### 환경 변수
 
-- `API_URL`: Lambda 함수의 API Gateway 엔드포인트 URL
+#### Lambda 함수
+- `TABLE_NAME`: DynamoDB 테이블 이름
+- `SENDER_EMAIL`: SES 발신자 이메일 주소
+- `RECEIVER_EMAIL`: 알림 수신자 이메일 주소
+
+#### 리뷰 생성기
+- `API_URL`: Lambda 함수의 API Gateway 엔드포인트 URL (기본값: 빈 문자열)
 
 ## 기술 스택
 
@@ -126,3 +155,4 @@ python request_generator.py
 - 각 assignment의 `venv/` 폴더는 Git에서 무시됩니다.
 - AWS 자격 증명 파일(`.aws/`)은 Git에 커밋하지 마세요.
 - 환경 변수 파일(`.env`)은 Git에 커밋하지 마세요.
+- Assignment 3의 Lambda 함수를 사용하기 전에 DynamoDB 테이블과 SES 이메일 인증을 완료해야 합니다.
