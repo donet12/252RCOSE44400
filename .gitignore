@@ -4,17 +4,24 @@ __pycache__/
 *$py.class
 *.so
 .Python
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
 
 # Virtual Environment
 venv/
 env/
 ENV/
 .venv
+assignment*/venv/
 
 # Data files
 data/
 *.txt
 !requirements.txt
+!README.txt
 
 # IDE
 .vscode/
@@ -22,24 +29,37 @@ data/
 *.swp
 *.swo
 *~
+.project
+.pydevproject
+.settings/
 
 # OS
 .DS_Store
 Thumbs.db
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
 
 # Docker
 .dockerignore
+docker-compose.override.yml
 
 # Logs
 *.log
+*.log.*
+logs/
 
 # Environment variables
 .env
 .env.local
+.env.*.local
+*.env
 
 # Backend data
 backend/data/
 assignment2/data/
+assignment*/data/
 
 # AWS
 .aws/
@@ -49,18 +69,33 @@ assignment2/data/
 *.pfx
 aws-exports.js
 amplify/
+serverless.yml
+.aws-sam/
+samconfig.toml
 
 # Lambda
 *.zip
 lambda_function/__pycache__/
 lambda_function/*.pyc
+assignment*/lambda_function/__pycache__/
+assignment*/lambda_function/*.pyc
 
 # Assignment specific
 assignment1/
 assignment2/venv/
 assignment3/venv/
 
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+
 # Temporary files
 *.tmp
 *.bak
+*.swp
+*~
+.cache/
 
